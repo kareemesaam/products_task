@@ -14,6 +14,7 @@
                     <div class="card-body">
                         @include('_include')
                         <a href="{{ route('products.create') }}" class="btn btn-success float-right">{{ __('Add new Product') }}</a>
+                        <a href="{{ route('orders.create') }}" class="btn btn-success float-right">{{ __('New Order') }}</a>
                         <table class="table">
                             <thead>
                                 <tr>
