@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::paginate(10);
+        return view('products.index',compact('products'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('products.create');
     }
 
     /**
@@ -33,53 +35,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
-        //
+        Product::create($request->validated());
+        return redirect()->route('products.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Product $product)
-    {
-        //
-    }
 }
